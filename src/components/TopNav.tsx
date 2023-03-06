@@ -7,10 +7,11 @@ const TopNav = () => {
     <div className="absolute top-0 flex w-screen items-center justify-between px-10 py-5">
       <div className="flex items-center gap-5 text-3xl font-bold">
         <a
-          className="text-[#590d22] underline decoration-[#ff4d6d] underline-offset-4 hover:text-[#ff4d6d]"
+          className="group text-[#590d22] underline decoration-[#ff4d6d] underline-offset-4 hover:text-[#ff4d6d]"
           href="#"
         >
           Bored
+          <span className="text-[#ff4d6d] group-hover:text-[#590d22]">.</span>
         </a>
       </div>
       <div className="flex items-center gap-5 text-xl font-bold">
