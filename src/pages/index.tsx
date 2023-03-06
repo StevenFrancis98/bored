@@ -2,6 +2,7 @@ import { type NextPage } from "next";
 import Head from "next/head";
 import LoginButton from "~/components/LoginButton";
 import TitleAndDescLink from "~/components/TitleAndDescLink";
+import TopNav from "~/components/TopNav";
 
 import { api } from "~/utils/api";
 
@@ -16,6 +17,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="max-w-screen flex min-h-screen w-screen flex-col items-center justify-center bg-[#ffe5ec]">
+        <TopNav />
         <div className="h-ful m-0 flex grow-[1] flex-wrap items-end justify-center bg-[#ffe5ec] py-5 text-center">
           <h1 className="h-full text-8xl font-extrabold tracking-tight text-[#590d22]">
             I am <span className="text-[#ff4d6d]">Bored</span>
@@ -34,7 +36,6 @@ const Home: NextPage = () => {
             <p className="text-2xl text-[#590d22]">
               {hello.data ? hello.data.greeting : "Loading tRPC query..."}
             </p>
-            <LoginButton />
           </div>
         </div>
       </main>
