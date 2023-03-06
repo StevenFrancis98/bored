@@ -1,12 +1,31 @@
 import { type NextPage } from "next";
+import { useSession } from "next-auth/react";
 import Head from "next/head";
+import { useEffect, useState } from "react";
 import TitleAndDescLink from "~/components/TitleAndDescLink";
 import TopNav from "~/components/TopNav";
 
 import { api } from "~/utils/api";
 
 const Home: NextPage = () => {
-  const hello = api.example.hello.useQuery({ text: "from me" });
+  const [vistiors, setVisitors] = useState<number>(0);
+  const { data: sessionData } = useSession();
+  const adduser = api.example.userCreate.useMutation();
+  const users = api.example.getAll.useQuery();
+
+  useEffect(() => {
+    let visited = window.sessionStorage.getItem("visited") ? true : false;
+    adduser.mutate({ visited: visited });
+    window.sessionStorage.setItem(
+      "visited",
+      sessionData?.user.name ? sessionData.user.name : "visited"
+    );
+    users.data && setVisitors(users.data.length);
+  }, []);
+
+  useEffect(() => {
+    users.data && setVisitors(users.data.length);
+  }, [users]);
 
   return (
     <>
@@ -31,10 +50,8 @@ const Home: NextPage = () => {
             />
             <TitleAndDescLink title="Bored" text="Well, what to make?" url="" />
           </div>
-          <div className="flex flex-col items-center justify-center gap-2">
-            <p className="text-2xl text-[#590d22]">
-              {hello.data ? hello.data.greeting : "Loading tRPC query..."}
-            </p>
+          <div className="flex h-10 w-10 flex-col items-center justify-center rounded-full bg-[#590d22]/10">
+            <p className="text-left text-2xl  text-[#590d22]">{vistiors}</p>
           </div>
         </div>
       </main>

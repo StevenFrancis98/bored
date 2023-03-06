@@ -1,5 +1,3 @@
-import Link from "next/link";
-
 const TitleAndDescLink: React.FC<{
   title: string;
   text: string;

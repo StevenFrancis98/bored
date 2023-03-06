@@ -8,7 +8,7 @@ const TopNav = () => {
       <div className="flex items-center gap-5 text-3xl font-bold">
         <a
           className="group text-[#590d22] underline decoration-[#ff4d6d] underline-offset-4 hover:text-[#ff4d6d]"
-          href="#"
+          href="/"
         >
           Bored
           <span className="text-[#ff4d6d] group-hover:text-[#590d22]">.</span>
@@ -16,17 +16,11 @@ const TopNav = () => {
       </div>
       <div className="flex items-center gap-5 text-xl font-bold">
         {sessionData && (
-          <a
-            className="text-[#590d22] decoration-[#ff4d6d] underline-offset-4 hover:text-[#ff4d6d]"
-            href="#"
-          >
+          <a className="text-[#590d22] hover:text-[#ff4d6d]" href="/profile">
             {sessionData.user.name}
           </a>
         )}
-        <a
-          className="text-[#590d22] decoration-[#ff4d6d] underline-offset-4 hover:text-[#ff4d6d]"
-          href="#"
-        >
+        <a className="text-[#590d22] hover:text-[#ff4d6d]" href="#">
           <LoginButton />
         </a>
       </div>
