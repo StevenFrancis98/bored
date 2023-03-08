@@ -7,20 +7,20 @@ const TopNav = () => {
     <div className="absolute top-0 flex w-screen items-center justify-between px-10 py-5">
       <div className="flex items-center gap-5 text-3xl font-bold">
         <a
-          className="group text-[#590d22] underline decoration-[#ff4d6d] underline-offset-4 hover:text-[#ff4d6d]"
+          className="group text-maroon underline decoration-pink-200 underline-offset-4 hover:text-pink-200"
           href="/"
         >
           Bored
-          <span className="text-[#ff4d6d] group-hover:text-[#590d22]">.</span>
+          <span className="text-pink-200 group-hover:text-maroon">.</span>
         </a>
       </div>
       <div className="flex items-center gap-5 text-xl font-bold">
         {sessionData && (
-          <a className="text-[#590d22] hover:text-[#ff4d6d]" href="/profile">
+          <a className="text-maroon hover:text-pink-200" href="/profile">
             {sessionData.user.name}
           </a>
         )}
-        <a className="text-[#590d22] hover:text-[#ff4d6d]" href="#">
+        <a className="text-maroon hover:text-pink-200" href="#">
           <LoginButton />
         </a>
       </div>

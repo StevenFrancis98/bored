@@ -8,7 +8,7 @@ const LoginButton: React.FC = () => {
     <div className="flex flex-col items-center justify-center gap-4">
       <Hover>
         <button
-          className="rounded-full bg-[#590d22]/10 px-8 py-3 font-semibold text-[#590d22] no-underline hover:bg-[#590d22]/5 hover:text-[#ff4d6d]"
+          className="rounded-full bg-pink-200/10 px-8 py-3 font-semibold text-maroon no-underline hover:bg-pink-200/5 hover:text-pink-200"
           onClick={sessionData ? () => void signOut() : () => void signIn()}
         >
           {sessionData ? "Sign out" : "Sign in"}
