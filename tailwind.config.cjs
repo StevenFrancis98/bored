@@ -13,7 +13,9 @@ const config = {
           },
         },
       },
-      animation: { glow: "glow 2s ease-in-out infinite" },
+      animation: {
+        glow: "glow 2s ease-in-out infinite",
+      },
       colors: {
         pink: {
           100: "#ffe5ec",
