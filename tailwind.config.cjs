@@ -23,6 +23,11 @@ const config = {
         },
         maroon: "#590d22",
       },
+      screens: {
+        s: "500px",
+        ms: "450px",
+        xs: "400px",
+      },
     },
   },
   plugins: [],

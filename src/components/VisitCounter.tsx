@@ -25,7 +25,7 @@ const VisitCounter = () => {
 
   return (
     <div className="flex h-14 w-14 animate-glow flex-col items-center justify-center rounded-full bg-pink-200/10">
-      <p className="text-left text-2xl text-pink-200">{vistiors}</p>
+      <p className="text-left text-2xl font-bold text-pink-200">{vistiors}</p>
     </div>
   );
 };

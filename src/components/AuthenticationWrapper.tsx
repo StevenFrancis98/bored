@@ -9,7 +9,7 @@ interface Props {
 const AuthenticationWrapper: NextPage<Props> = ({ children, status }) => {
   if (status === "unauthenticated")
     return (
-      <div className="flex h-full w-full flex-col items-center justify-center">
+      <div className="flex h-full w-full flex-grow flex-col items-center justify-center text-center">
         <p className="text-2xl text-maroon">
           You need to sign in to view this!
         </p>
@@ -18,7 +18,7 @@ const AuthenticationWrapper: NextPage<Props> = ({ children, status }) => {
 
   if (status === "loading") return <Spinner />;
 
-  if (status === "authenticated") return <div>{children}</div>;
+  if (status === "authenticated") return { ...children };
 
   return <>Error</>;
 };
