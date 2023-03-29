@@ -17,8 +17,9 @@
 import { type CreateNextContextOptions } from "@trpc/server/adapters/next";
 import { type Session } from "next-auth";
 
-import { getServerAuthSession } from "~/server/auth";
 import { prisma } from "~/server/db";
+
+const ee = new EventEmitter();
 
 type CreateContextOptions = {
   session: Session | null;
@@ -38,6 +39,7 @@ const createInnerTRPCContext = (opts: CreateContextOptions) => {
   return {
     session: opts.session,
     prisma,
+    ee,
   };
 };
 
@@ -47,11 +49,13 @@ const createInnerTRPCContext = (opts: CreateContextOptions) => {
  *
  * @see https://trpc.io/docs/context
  */
-export const createTRPCContext = async (opts: CreateNextContextOptions) => {
-  const { req, res } = opts;
-
+export const createTRPCContext = async (
+  opts:
+    | CreateNextContextOptions
+    | NodeHTTPCreateContextFnOptions<IncomingMessage, ws>
+) => {
   // Get the session from the server using the getServerSession wrapper function
-  const session = await getServerAuthSession({ req, res });
+  const session = await getSession(opts);
 
   return createInnerTRPCContext({
     session,
@@ -65,6 +69,11 @@ export const createTRPCContext = async (opts: CreateNextContextOptions) => {
  */
 import { initTRPC, TRPCError } from "@trpc/server";
 import superjson from "superjson";
+import { NodeHTTPCreateContextFnOptions } from "@trpc/server/dist/adapters/node-http";
+import ws from "ws";
+import { IncomingMessage } from "http";
+import { getSession } from "next-auth/react";
+import EventEmitter from "events";
 
 const t = initTRPC.context<typeof createTRPCContext>().create({
   transformer: superjson,

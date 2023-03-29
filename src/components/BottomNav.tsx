@@ -1,3 +1,4 @@
+import OnlineUsers from "./OnlineUsers";
 import VisitCounter from "./VisitCounter";
 
 const BottomNav = () => {
@@ -7,7 +8,7 @@ const BottomNav = () => {
         <VisitCounter />
       </div>
       <div className="flex items-center gap-5 text-xl font-bold text-pink-200">
-        to be created...
+        <OnlineUsers />
       </div>
     </div>
   );

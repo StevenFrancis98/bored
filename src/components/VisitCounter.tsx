@@ -5,8 +5,13 @@ import { api } from "~/utils/api";
 const VisitCounter = () => {
   const [vistiors, setVisitors] = useState<number>(0);
   const { data: sessionData } = useSession();
-  const adduser = api.example.userCreate.useMutation();
-  const users = api.example.getAll.useQuery();
+  const adduser = api.visitCount.userCreate.useMutation();
+  const users = api.visitCount.getAll.useQuery();
+  api.visitCount.onUserCreate.useSubscription(undefined, {
+    onData(visitors) {
+      setVisitors(visitors.length);
+    },
+  });
 
   useEffect(() => {
     let visited = window.sessionStorage.getItem("visited") ? true : false;
@@ -15,12 +20,10 @@ const VisitCounter = () => {
       "visited",
       sessionData?.user.name ? sessionData.user.name : "visited"
     );
-    users.data && setVisitors(users.data.length);
   }, []);
 
   useEffect(() => {
-    if (!users.data) return;
-    setVisitors(users.data.length);
+    users.data && setVisitors(users.data.length);
   }, [users]);
 
   return (
