@@ -1,4 +1,4 @@
-import { Example, Visit } from "@prisma/client";
+import { Visit } from "@prisma/client";
 import { observable } from "@trpc/server/observable";
 import { z } from "zod";
 
