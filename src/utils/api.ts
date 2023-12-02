@@ -23,7 +23,7 @@ function getEndingLink() {
     });
   }
   const client = createWSClient({
-    url: `process.env.WS_URL`,
+    url: `${process.env.NEXT_PUBLIC_WS_URL}`,
   });
   return wsLink<AppRouter>({
     client,
